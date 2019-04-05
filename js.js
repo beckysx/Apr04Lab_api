@@ -16,9 +16,9 @@ data.then(function(d){
             var movie={"title":d.title,"release_date":d.release_date,"description":d.description,"picture":d.title+".png"}
             dataset[i].films.push(movie)}
         })})
-
       console.log(dataset)
 
+      // create button inside <a>
       for (i=0;i<dataset.length;i++){
         d3.select("body").append("a")
         .attr('href', function(){
@@ -29,13 +29,25 @@ data.then(function(d){
         .attr('class', 'buttons')
       }
 
-
-
-      d3.select("body").selectAll("svg")
+      d3.select("body").selectAll("g")
       .data(dataset)
       .enter()
-      .append("svg")
+      .append("g")
       .attr('width', 1400)
       .attr('id', function(d){return d.name})
+
+
+      for (i=0;i<dataset.length;i++){
+        var g=d3.select("#"+dataset[i].name)
+        g.selectAll("svg:image")
+        .data(dataset[i].films)
+        .enter()
+        .append("svg:image")
+        .attr('xlink:href', function(d){return d.picture})
+        .attr('width', 400)
+      }
+
+
+
 
 },function(err){console.log(err)})
