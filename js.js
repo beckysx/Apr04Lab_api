@@ -29,23 +29,27 @@ data.then(function(d){
         .attr('class', 'buttons')
       }
 
-      d3.select("body").selectAll("g")
+      var divs=d3.select("body").selectAll("div")
       .data(dataset)
       .enter()
-      .append("g")
+      .append("div")
       .attr('width', 1400)
-      .attr('id', function(d){return d.name})
+      .attr('id', function(d){
+        return d.name})
 
-
-      for (i=0;i<dataset.length;i++){
-        var g=d3.select("#"+dataset[i].name)
-        g.selectAll("svg:image")
-        .data(dataset[i].films)
+        divs.selectAll("img")
+        .data(function(d){
+          return d.films
+        })
         .enter()
-        .append("svg:image")
-        .attr('xlink:href', function(d){return d.picture})
-        .attr('width', 400)
-      }
+        .append("img")
+        .attr('src', function(d){
+          console.log(d.picture)
+          return d.picture})
+        .attr('width', 150)
+        .attr('height', 225)
+
+
 
 
 
