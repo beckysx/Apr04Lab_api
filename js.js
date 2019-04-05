@@ -18,13 +18,24 @@ data.then(function(d){
         })})
 
       console.log(dataset)
-      d3.select("body").selectAll("button")
+
+      for (i=0;i<dataset.length;i++){
+        d3.select("body").append("a")
+        .attr('href', function(){
+          return "#"+dataset[i].name
+        })
+        .append("button")
+        .text(function(){return dataset[i].name})
+        .attr('class', 'buttons')
+      }
+
+
+
+      d3.select("body").selectAll("svg")
       .data(dataset)
       .enter()
-      .append("button")
-      .text(function(d){return d.name})
-      .on('click', function(d){
-
-      })
+      .append("svg")
+      .attr('width', 1400)
+      .attr('id', function(d){return d.name})
 
 },function(err){console.log(err)})
