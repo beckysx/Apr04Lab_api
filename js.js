@@ -8,18 +8,19 @@ data.then(function(d){
       directors.push(d.director)
     }})
 
-  var direcorList=[]
+  var dataset=[]
   directors.forEach(function(a,index){
-    direcorList.push({"name":a,"films":[]})
+    dataset.push({"name":a,"films":[]})
     d.forEach(function(d){
       if (d.director==a){
-        direcorList[index].films.push(d.title)
+        var movie={"title":d.title,"release_date":d.release_date,"description":d.description}
+        dataset[index].films.push(movie)
       }
     })
   })
-console.log(direcorList)
+console.log(dataset)
   d3.select("body").selectAll("button")
-  .data(direcorList)
+  .data(dataset)
   .enter()
   .append("button")
   .text(function(d){return d.name})
