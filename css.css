@@ -1,0 +1,13 @@
+body{
+  width: 1400px;
+}
+img{
+  position: relative;
+}
+.bigdiv{
+  padding-left: 20px;
+  height: 550px;
+  width:1400px;
+  position: relative;
+  top: 100px;
+}

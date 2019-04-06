@@ -29,25 +29,55 @@ data.then(function(d){
         .attr('class', 'buttons')
       }
 
+      // creat div for each director
       var divs=d3.select("body").selectAll("div")
       .data(dataset)
       .enter()
       .append("div")
-      .attr('width', 1400)
+      .attr('class', 'bigdiv')
       .attr('id', function(d){
         return d.name})
 
-        divs.selectAll("img")
-        .data(function(d){
-          return d.films
-        })
-        .enter()
-        .append("img")
-        .attr('src', function(d){
-          console.log(d.picture)
-          return d.picture})
-        .attr('width', 150)
-        .attr('height', 225)
+      divs.append("h3")
+      .text(function(d){
+        return d.name})
+
+      // divs
+
+      divs.selectAll("img")
+      .data(function(d){
+        return d.films
+      })
+      .enter()
+      .append("img")
+      .attr('src', function(d){
+        return d.picture})
+      .attr('width', 150)
+      .attr('height', 225)
+      .style('left', function(d,i){
+        if (i>4){
+          return -750+(i-5)*30}
+        else{return i*30}
+      })
+      .style('top', function(d,i){
+        if (i>4){return 250}
+        else{return 0}
+      })
+
+      var info=divs.append("div").attr('class', 'info')
+      info.append("p")
+      .text('Title: ')
+      .append("span")
+      .attr('class', 'title')
+      info.append("p")
+      .text('Realease Date: ')
+      .append("span")
+      .attr('class', 'date')
+      info.append("p")
+      .text('Description: ')
+      .append("span")
+      .attr('class', 'description')
+
 
 
 
