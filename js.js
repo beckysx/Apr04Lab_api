@@ -27,6 +27,7 @@ data.then(function(d){
         .append("button")
         .text(function(){return dataset[i].name})
         .attr('class', 'buttons')
+        .style('left', (i+1)*30)
       }
 
       // creat div for each director
