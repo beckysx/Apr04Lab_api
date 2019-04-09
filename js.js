@@ -13,7 +13,7 @@ data.then(function(d){
         dataset.push({"name":a,"films":[]})
         d.forEach(function(d){
           if (d.director==a){
-            var movie={"title":d.title,"release_date":d.release_date,"description":d.description,"picture":d.title+".png"}
+            var movie={"title":d.title,"release_date":d.release_date,"description":d.description,"picture":d.title+".png","director":d.director.replace(/\s*/g,"").toLowerCase()}
             dataset[i].films.push(movie)}
         })})
       console.log(dataset)
@@ -37,7 +37,7 @@ data.then(function(d){
       .append("div")
       .attr('class', 'bigdiv')
       .attr('id', function(d){
-        return d.name})
+        return d.name.replace(/\s*/g,"").toLowerCase()})
 
       divs.append("h3")
       .text(function(d){
@@ -55,29 +55,45 @@ data.then(function(d){
         return d.picture})
       .attr('width', 150)
       .attr('height', 225)
-      .style('left', function(d,i){
-        if (i>4){
-          return -750+(i-5)*30}
-        else{return i*30}
-      })
-      .style('top', function(d,i){
-        if (i>4){return 250}
-        else{return 0}
+      .on('mouseover',function(){
+        d3.select(this)
+        .attr('width', 170)
+        .attr('height', 245)
+
+      } )
+      .on('mouseout',function(){
+        d3.select(this)
+        .attr('width', 150)
+        .attr('height', 225)
+      } )
+      .on("click",function(d){
+        var change=d3.select("#"+d.director)
+        change.select(".title")
+        .text(d.title)
+        change.select(".date")
+        .text(d.release_date)
+        change.select(".description")
+        .text(d.description)
+
       })
 
-      var info=divs.append("div").attr('class', 'info')
+      var info=divs.append("div").attr('id', 'info')
       info.append("p")
-      .text('Title: ')
+      .text('Title:   ')
+      .style('font-size', 20)
       .append("span")
       .attr('class', 'title')
       info.append("p")
-      .text('Realease Date: ')
+      .text('Realease Date:   ')
+      .style('font-size', 20)
       .append("span")
       .attr('class', 'date')
       info.append("p")
-      .text('Description: ')
+      .text('Description:   ')
+      .style('font-size', 20)
       .append("span")
       .attr('class', 'description')
+
 
 
 

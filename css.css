@@ -1,5 +1,7 @@
+@import url('https://fonts.googleapis.com/css?family=Montserrat|Raleway');
 body{
   width: 1400px;
+  font-family: 'Raleway', sans-serif;
 }
 img{
   position: relative;
@@ -21,4 +23,12 @@ button{
 }
 button:hover{
   background-color: gray;
+}
+span{
+  font-size: 15px;
+  font-family: 'Montserrat', sans-serif;
+  text-decoration: underline;
+}
+p{
+  line-height: 30px;
 }
