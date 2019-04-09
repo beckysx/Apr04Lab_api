@@ -22,7 +22,7 @@ data.then(function(d){
       for (i=0;i<dataset.length;i++){
         d3.select("body").append("a")
         .attr('href', function(){
-          return "#"+dataset[i].name
+          return "#"+dataset[i].name.replace(/\s*/g,"").toLowerCase()
         })
         .append("button")
         .text(function(){return dataset[i].name})
